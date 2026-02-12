@@ -40,7 +40,7 @@ All outputs are saved in a central outputs/ folder.
 ```
 Address_Geocoder/
 ├── data/
-│   └── input_addresses.csv       # Raw input CSV (user-provided)
+│   └── sample_addresses.csv       # Raw input CSV (user-provided)
 │
 ├── outputs/                      # Auto-generated output folder
 │   ├── geocoded_final_partial.csv
@@ -73,7 +73,7 @@ pip install -r requirements.txt
    - Ensure it has a column for addresses (e.g., FULL_ADDRESS).
 2. Run the script:
 ```bash
-python geocode_addresses.py --input data/input_addresses.csv
+python geocode_addresses.py --input data/sample_addresses.csv
 ```
 
 
@@ -86,7 +86,7 @@ python geocode_addresses.py --input data/input_addresses.csv
 
 Example: Export both GeoPackage and Shapefile:
 ````bash
-python geocode_addresses.py --input data/input_addresses.csv --formats GPKG,SHP
+python geocode_addresses.py --input data/sample_addresses.csv --formats GPKG,SHP
 ````
 ## Use Case
 
@@ -99,4 +99,3 @@ This workflow is ideal for analysts working with municipal, planning, or operati
 - Requests are rate-limited to respect OpenStreetMap Nominatim usage policies.
 - For very large datasets, consider using a hosted geocoding service to handle volume efficiently.
 - GeoPackage is the modern standard for GIS data; Shapefile support is included for legacy systems.
-

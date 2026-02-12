@@ -1,11 +1,25 @@
-# PyCharm
+# Ignore all CSVs by default
+*.csv
+
+# But track sample CSV for GitHub
+!data/sample_addresses.csv
+
+# Ignore outputs folder
+outputs/
+
+# PyCharm files
 .idea/
 *.iml
+
+# Python cache
 __pycache__/
 *.pyc
 *.pkl
-*.csv
 *.shp
 *.shx
 *.dbf
+*.prj
+*.cpg
+
+# Environment variables
 .env
