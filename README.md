@@ -9,24 +9,32 @@ The script reads a CSV of addresses, geocodes them with built-in retry and timeo
 ## Features
 
 - Automated address geocoding using OpenStreetMap (Nominatim)
+- Data validation stage: checks required columns and empty datasets
+- Data cleaning stage: trims whitespace, collapses extra spaces, standardizes capitalization, and removes empty addresses
+- Duplicate removal: prevents repeated geocoding of the same address
 - Retry logic and timeout handling for unstable network responses
 - Tracks geocoding status in a STATUS column (Geocoded / Not Geocoded)
 - Resume-from-partial functionality to prevent data loss
 - Incremental saving of partial results during processing
+- Logging system for both console and file output (geocode.log)
 - Outputs multiple spatial formats (GeoPackage .gpkg and Shapefile .shp)
 - Timestamped filenames to avoid overwriting previous runs
-- All addresses are retained in outputs for review, even if geocoding fails
-- Designed for real-world municipal and planning datasets
+- Designed for real-world municipal, planning, and operational datasets
 
 ---
 
 ## Workflow Overview
 
 1. Load raw address data from CSV
-2. Automatically geocode addresses with retry and timeout handling
-3. Save progress incrementally to a partial CSV in the outputs/ folder
-4. Resume processing if interrupted
-5. Export final results as:
+2. Validate and clean addresses:
+   - Check required column exists
+   - Remove empty and invalid rows
+   - Trim spaces and normalize capitalization
+   - Remove duplicate addresses
+3. Automatically geocode addresses with retry and timeout handling
+4. Save progress incrementally to a partial CSV in the outputs/ folder
+5. Resume processing if interrupted
+6. Export final results as:
    - Timestamped CSV with latitude/longitude and STATUS column
    - GeoPackage (.gpkg) for modern GIS workflows
    - Shapefile (.shp) for legacy GIS compatibility
@@ -47,7 +55,7 @@ Address_Geocoder/
 │   ├── geocoded_final_20260212_142530.csv
 │   ├── geocoded_final_20260212_142530.gpkg
 │   ├── geocoded_final_20260212_142530.shp
-│   └── ... other shapefile components (.shx, .dbf, .prj)
+│   └── geocode.log
 │
 ├── geocode_addresses.py          # Main automation script
 ├── requirements.txt
